@@ -27,12 +27,10 @@ class MainActivity : AppCompatActivity() {
         fruit.add(FruitData("Kiwi", 89.0, 200, R.drawable.img_kiwi))
     }
 
-    fun setUpRecyclerView() {
+    private fun setUpRecyclerView() {
         if (fruit.isEmpty()) {
             addToArray()
         }
-//        fruit.clear()
-//        addToArray()
 
         val fruitAdapter = FruitAdapter(fruit)
 
