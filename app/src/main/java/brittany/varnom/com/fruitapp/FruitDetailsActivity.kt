@@ -10,10 +10,10 @@ class FruitDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fruit_details)
         val fruit = intent.getParcelableExtra<FruitData>("FRUIT_DATA")
-        val fruitName = fruit.fruitName
-        val fruitPrice = fruit.fruitPrice / 100
-        val fruitWeight = fruit.fruitWeight
-        val fruitImage = fruit.fruitImageRes
+        val fruitName = fruit.type
+        val fruitPrice = fruit.price / 100
+        val fruitWeight = fruit.weight
+        val fruitImage = fruit.imageRes
 
         val fruitDetails = "£$fruitPrice per ${fruitWeight}g."
 

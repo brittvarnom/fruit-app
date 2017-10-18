@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 
-class FruitAdapter(val fruitList: List<FruitData>) : RecyclerView.Adapter<FruitAdapter.FruitViewHolder>(){
+class FruitAdapter(var fruitList: List<FruitData>) : RecyclerView.Adapter<FruitAdapter.FruitViewHolder>(){
     override fun onBindViewHolder(holder: FruitViewHolder?, position: Int) {
         val fruit = fruitList[position]
         holder?.bind(fruit)
@@ -27,15 +27,20 @@ class FruitAdapter(val fruitList: List<FruitData>) : RecyclerView.Adapter<FruitA
     inner class FruitViewHolder(view: View) : RecyclerView.ViewHolder(view){
         fun bind(fruit : FruitData) {
             val fruitIcon = itemView.findViewById<View>(R.id.ic_fruit) as ImageView
-            fruitIcon.setImageResource(fruit.fruitImageRes)
+            fruitIcon.setImageResource(fruit.imageRes)
             val fruitName = itemView.findViewById<View>(R.id.ic_fruit_name) as TextView
-            fruitName.text = fruit.fruitName
+            fruitName.text = fruit.type
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, FruitDetailsActivity::class.java)
                 intent.putExtra("FRUIT_DATA", fruit)
                 itemView.context.startActivity(intent)
             }
         }
+    }
+
+    fun updateFruit(fruitList: List<FruitData>) {
+        this.fruitList = fruitList
+        notifyDataSetChanged()
     }
 
 
