@@ -1,13 +1,20 @@
 package brittany.varnom.com.fruitapp
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import okhttp3.*
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
-    var fruit = ArrayList<FruitData>()
+    private var fruit = emptyList<FruitData>()
+    lateinit var fruitAdapter: FruitAdapter
+    private var fruitUnused = ArrayList<FruitData>()
+    private val httpClient = OkHttpClient()
+    private val ENDPOINT = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,27 +22,58 @@ class MainActivity : AppCompatActivity() {
         setUpRecyclerView()
     }
 
-    fun addToArray() {
-        fruit.add(FruitData("Apple", 149.0, 120, R.drawable.img_apple))
-        fruit.add(FruitData("Banana", 129.0, 80, R.drawable.img_banana))
-        fruit.add(FruitData("Blueberry", 19.0, 18, R.drawable.img_blueberry))
-        fruit.add(FruitData("Orange", 199.0, 150, R.drawable.img_orange))
-        fruit.add(FruitData("Pear", 99.0, 100, R.drawable.img_pear))
-        fruit.add(FruitData("Strawberry", 99.0, 20, R.drawable.img_strawberry))
-        fruit.add(FruitData("Kumquat", 49.0, 80, R.drawable.img_kumquat))
-        fruit.add(FruitData("Pitaya", 599.0, 100, R.drawable.img_pitaya))
-        fruit.add(FruitData("Kiwi", 89.0, 200, R.drawable.img_kiwi))
+    private fun getJsonAsString(url: String,
+                                success: ((body: String?) -> Unit),
+                                failure: ((e: Exception?) -> Unit)) {
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        httpClient.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call?, e: IOException?) {
+                failure.invoke(e)
+            }
+
+            override fun onResponse(call: Call?, response: Response?) {
+                success.invoke(response?.body()?.string())
+            }
+        })
+    }
+
+    private fun addToArray() {
+        getJsonAsString(ENDPOINT, { fruitJson ->
+            fruit = FruitTransformer.transform(fruitJson)
+            val runnable = Runnable {
+                fruitAdapter.updateFruit(fruit)
+            }
+            val handler = Handler(applicationContext.mainLooper)
+            handler.post(runnable)
+
+        }, { failure ->
+            failure?.printStackTrace()
+        })
     }
 
     private fun setUpRecyclerView() {
+        fruitAdapter = FruitAdapter(fruit)
         if (fruit.isEmpty()) {
             addToArray()
         }
-
-        val fruitAdapter = FruitAdapter(fruit)
 
         recycler_fruit_list.adapter = fruitAdapter
         recycler_fruit_list.layoutManager = LinearLayoutManager(applicationContext)
     }
 
 }
+
+/*
+R.drawable.img_apple))
+R.drawable.img_banana))
+R.drawable.img_blueberry))
+R.drawable.img_orange))
+R.drawable.img_pear))
+R.drawable.img_strawberry))
+R.drawable.img_kumquat))
+R.drawable.img_pitaya))
+R.drawable.img_kiwi))
+ */

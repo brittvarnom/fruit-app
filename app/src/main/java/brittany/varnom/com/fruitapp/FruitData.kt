@@ -3,7 +3,7 @@ package brittany.varnom.com.fruitapp
 import android.os.Parcel
 import android.os.Parcelable
 
-data class FruitData(val fruitName: String, val fruitPrice: Double, val fruitWeight: Int, val fruitImageRes: Int) : Parcelable {
+data class FruitData(val type: String, val price: Double, val weight: Int, val imageRes: Int = 0) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readDouble(),
@@ -12,10 +12,10 @@ data class FruitData(val fruitName: String, val fruitPrice: Double, val fruitWei
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(fruitName)
-        parcel.writeDouble(fruitPrice)
-        parcel.writeInt(fruitWeight)
-        parcel.writeInt(fruitImageRes)
+        parcel.writeString(type)
+        parcel.writeDouble(price)
+        parcel.writeInt(weight)
+        parcel.writeInt(imageRes)
     }
 
     override fun describeContents(): Int {
