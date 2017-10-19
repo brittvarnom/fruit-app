@@ -11,8 +11,7 @@ import java.io.IOException
 class MainActivity : AppCompatActivity() {
 
     private var fruit = emptyList<FruitData>()
-    lateinit var fruitAdapter: FruitAdapter
-    private var fruitUnused = ArrayList<FruitData>()
+    private lateinit var fruitAdapter: FruitAdapter
     private val httpClient = OkHttpClient()
     private val ENDPOINT = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json"
 
@@ -65,15 +64,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
-/*
-R.drawable.img_apple))
-R.drawable.img_banana))
-R.drawable.img_blueberry))
-R.drawable.img_orange))
-R.drawable.img_pear))
-R.drawable.img_strawberry))
-R.drawable.img_kumquat))
-R.drawable.img_pitaya))
-R.drawable.img_kiwi))
- */

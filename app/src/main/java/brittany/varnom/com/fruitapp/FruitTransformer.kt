@@ -14,7 +14,7 @@ object FruitTransformer {
 
             val fruits = mutableListOf<FruitData>()
 
-            for (i in 0..(fruitArray.length() -1)) {
+            for (i in 0..(fruitArray.length() - 1)) {
                 val fruitItem = fruitArray.getJSONObject(i)
                 val fruit = FruitData(
                     fruitItem.getString("type"),
