@@ -3,10 +3,10 @@ package brittany.varnom.com.fruitapp
 import android.os.Parcel
 import android.os.Parcelable
 
-data class FruitData(var type: String,
-                     val price: Double,
-                     val weight: Int,
-                     val imageurl: String) : Parcelable {
+data class VegData(var type: String,
+                   val price: Double,
+                   val weight: Int,
+                   val imageurl: String) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readDouble(),

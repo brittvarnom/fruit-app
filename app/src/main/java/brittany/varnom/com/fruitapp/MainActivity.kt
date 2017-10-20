@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     private var fruit = emptyList<FruitData>()
     private lateinit var fruitAdapter: FruitAdapter
     private val httpClient = OkHttpClient()
-    private val ENDPOINT = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json"
+    private val ENDPOINT = "https://fierce-ravine-28456.herokuapp.com"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

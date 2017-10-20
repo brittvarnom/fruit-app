@@ -1,7 +1,8 @@
 package brittany.varnom.com.fruitapp
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_fruit_details.*
 
 class FruitDetailsActivity : AppCompatActivity() {
@@ -13,11 +14,11 @@ class FruitDetailsActivity : AppCompatActivity() {
         val fruitName = fruit.type
         val fruitPrice = fruit.price / 100
         val fruitWeight = fruit.weight
-        val fruitImage = fruit.imageRes
+        val fruitImageUrl = fruit.imageurl
 
         val fruitDetails = "£$fruitPrice per ${fruitWeight}g."
 
-        fruit_details_fruit_image.setImageResource(fruitImage)
+        Picasso.with(this).load(fruitImageUrl).into(fruit_details_fruit_image)
         fruit_details_fruit_name.text = fruitName
         fruit_details.text = fruitDetails
     }
