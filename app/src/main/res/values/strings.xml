@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FruitApp</string>
+    <string name="credits">Photos © WikiMedia (Public domain + free use) \nLettuce Photo © Daniel Frost</string>
 
 </resources>
