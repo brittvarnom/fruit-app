@@ -4,7 +4,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 object FruitTransformer {
-    val OBJECTNAME = "vegetables"
+    val OBJECTNAME = "fruit"
 
     fun transform(json: String?): List<FruitData> {
         try {

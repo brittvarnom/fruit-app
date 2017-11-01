@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context="brittany.varnom.com.fruitapp.MainActivity">
 
-
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
@@ -25,9 +24,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:gravity="center"
         android:text="@string/credits"
-        android:layout_margin="4dp"
         android:textColor="@android:color/white"/>
 
 </LinearLayout>

@@ -28,8 +28,6 @@ class FruitAdapter(private var fruitList: List<FruitData>) : RecyclerView.Adapte
     inner class FruitViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(fruit: FruitData) {
             val fruitImage = itemView.findViewById<View>(R.id.ic_fruit) as ImageView
-//            modifyFruitData(fruit)
-//            fruitImage.setImageResource(fruit.imageRes)
             Picasso.with(itemView.context).load(fruit.imageurl).into((fruitImage))
             val fruitName = itemView.findViewById<View>(R.id.ic_fruit_name) as TextView
             fruit.type = fruit.type.capitalize()
