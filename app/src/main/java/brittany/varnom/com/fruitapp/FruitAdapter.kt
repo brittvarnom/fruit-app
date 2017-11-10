@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 
 
-class FruitAdapter(private var fruitList: List<FruitData>) : RecyclerView.Adapter<FruitAdapter.FruitViewHolder>() {
+class FruitAdapter(private var fruitList: List<GroceryData>) : RecyclerView.Adapter<FruitAdapter.FruitViewHolder>() {
     override fun onBindViewHolder(holder: FruitViewHolder?, position: Int) {
         val fruit = fruitList[position]
         holder?.bind(fruit)
@@ -26,7 +26,7 @@ class FruitAdapter(private var fruitList: List<FruitData>) : RecyclerView.Adapte
     }
 
     inner class FruitViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(fruit: FruitData) {
+        fun bind(fruit: GroceryData) {
             val fruitImage = itemView.findViewById<View>(R.id.ic_fruit) as ImageView
             Picasso.with(itemView.context).load(fruit.imageurl).into((fruitImage))
             val fruitName = itemView.findViewById<View>(R.id.ic_fruit_name) as TextView
@@ -40,7 +40,7 @@ class FruitAdapter(private var fruitList: List<FruitData>) : RecyclerView.Adapte
         }
     }
 
-    fun updateFruit(fruitList: List<FruitData>) {
+    fun updateFruit(fruitList: List<GroceryData>) {
         this.fruitList = fruitList
         notifyDataSetChanged()
     }

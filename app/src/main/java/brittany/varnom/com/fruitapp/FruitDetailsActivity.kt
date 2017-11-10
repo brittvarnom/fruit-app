@@ -10,7 +10,7 @@ class FruitDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fruit_details)
-        val fruit = intent.getParcelableExtra<FruitData>("FRUIT_DATA")
+        val fruit = intent.getParcelableExtra<GroceryData>("FRUIT_DATA")
         val fruitName = fruit.type
         val fruitPrice = fruit.price / 100
         val fruitWeight = fruit.weight
